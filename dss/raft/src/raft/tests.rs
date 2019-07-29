@@ -47,7 +47,7 @@ fn test_initial_election_2a() {
 
     // there should still be a leader.
     cfg.check_one_leader();
-
+    
     cfg.end();
 }
 
@@ -58,6 +58,7 @@ fn test_reelection_2a() {
     cfg.begin("Test (2A): election after network failure");
 
     let leader1 = cfg.check_one_leader();
+    thread::sleep(Duration::new(5, 0));
     // if the leader disconnects, a new one should be elected.
     cfg.disconnect(leader1);
     cfg.check_one_leader();
